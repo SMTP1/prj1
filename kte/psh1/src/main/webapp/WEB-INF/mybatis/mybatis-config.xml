@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="multipleResultSetsEnabled" value="true"/>
+		<setting name="useGeneratedKeys" value="true" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="V3_Member" type="com.web.psh1.vo.V3_Member" />
+		<typeAlias alias="bvo" type="com.web.psh1.vo.V3_Board" />
+		<typeAlias alias="bvoi" type="com.web.psh1.vo.V3_BoardImg" />
+	</typeAliases>
+</configuration>

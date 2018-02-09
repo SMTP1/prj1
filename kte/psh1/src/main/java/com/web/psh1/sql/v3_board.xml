@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="V3_Board">
+	<select id="getlastno"  resultType="int">
+		SELECT NVL(MAX(NO),0) FROM V3_BOARD
+	</select>
+	
+	<insert id="insert" parameterType="bvo">
+		INSERT INTO V3_BOARD(no,title,content, writer, hit, date1)
+		VALUES (#{no}, #{title}, #{content}, #{writer}, 	#{hit}, SYSDATE)
+	</insert>
+
+	<select id="selectlist" parameterType="int" resultType="bvo">
+		SELECT * FROM 
+		  (SELECT no, title, content, writer, hit, date1,
+		  ROW_NUMBER() OVER (ORDER BY no DESC) rown
+		  FROM V3_BOARD)
+		WHERE rown BETWEEN #{page} and #{page}+9
+	</select>
+	
+	<insert id="insertimg" parameterType="bvoi">
+		INSERT INTO V3_BOARD_IMG 	(no, filename, filedata, board_no, date1)
+		VALUES (SEQ_V3_BOARD_IMG_NO.NEXTVAL, #{FILENAME}, #{FILEDATA, jdbcType=BLOB}, #{BOARD_NO}, SYSDATE)
+	</insert>
+
+</mapper>
